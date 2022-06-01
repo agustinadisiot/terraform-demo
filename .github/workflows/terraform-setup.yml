@@ -18,11 +18,15 @@ jobs:
     steps:
     
     - name: Checkout
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v3
     
     - name:  Terraform Setup
-    - uses: hashicorp/setup-terraform@v2
-        
+      uses: hashicorp/setup-terraform@v2
+      with:
+        variables: |
+          access_key= "${{ secrets.AWS_ACCESS_KEY_ID }}"
+          secret_key= "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+      
     - name: Terraform Init
       id: init
       run: terraform init
