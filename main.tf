@@ -7,6 +7,24 @@ terraform {
   }
 }
 
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.26.0"
+    }
+    
+    
+  cloud {
+    organization = "agustinavevo"
+
+    workspaces {
+      name = "gh-actions-demo"
+    }
+  }
+}
+
+
 provider "aws" {
   region = "us-east-1"
   access_key = vars.access_key
