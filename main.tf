@@ -1,18 +1,23 @@
 terraform {
   required_providers {
-    null = {
-      source = "hashicorp/null"
-      version = "3.1.1"
+    aws = {
+      source = "hashicorp/aws"
+      version = "4.16.0"
     }
   }
 }
 
-provider "null" {
-  # Configuration options
+provider "aws" {
+  region = "us-east-1"
+  access_key = vars.access_key
+  secret_key = vars.secret_key
 }
 
-resource "null_resource" "test" {
-  provisioner "local-exec" {
-    command = "echo 'hello world' "
+resource "aws_instance" "web" {
+  ami           = "ami-09d56f8956ab235b3" #ubuntu 
+  instance_type = "t2.micro"
+
+   tags = {
+    Name = "my server"
   }
 }
