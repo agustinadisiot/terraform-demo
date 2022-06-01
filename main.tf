@@ -1,16 +1,5 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "3.26.0"
-    }
-    random = {
-      source  = "hashicorp/random"
-      version = "3.0.1"
-    }
-  }
-  required_version = ">= 1.1.0"
 
+terraform {
   cloud {
     organization = "agustinavevo"
 
@@ -18,12 +7,18 @@ terraform {
       name = "gh-actions-demo"
     }
   }
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "4.16.0"
+    }
+  }
 }
 
 provider "aws" {
   region = "us-east-1"
-  access_key = vars.access_key
-  secret_key = vars.secret_key
+  //access_key = vars.access_key
+  //secret_key = vars.secret_key
 }
 
 resource "aws_instance" "web" {
